@@ -85,21 +85,28 @@ class SinglyLinkedList {
         // console.log(removedTail);
         // linkedList.tail = current; // only code this for doubly linked list
     }
-        this.length--;
-        return current;
+
+    this.length--;
+    return current;
  
     // Write your hypothesis on the time complexity of this method here
   }
 
   peekAtHead() {
+    if(!this.head) return undefined;
     // Return the value of head node
-    // Your code here
+    return this.head.value;
+
     // Write your hypothesis on the time complexity of this method here
   }
 
   print() {
     // Print out the linked list
-    // Your code here
+    let current;
+    while(this.head) {
+        console.log(current);
+        current = current.next;
+    }
     // Write your hypothesis on the time complexity of this method here
   }
 }
@@ -108,16 +115,24 @@ class SinglyLinkedList {
 
 let linkedList = new SinglyLinkedList();
 
-console.log(linkedList.addToHead('A'));
+// console.log(linkedList.addToHead('A'));
+// console.log(linkedList.addToTail('B'));
+// console.log(linkedList.addToTail('C'));
+
+// linkedList.removeFromTail();
+// console.log(linkedList.head) // { value: 'A', next: { value: 'B', next: null } });
+// linkedList.removeFromTail();
+// console.log(linkedList.head) // { value: 'A', next: null });
+// linkedList.removeFromTail();
+// console.log(linkedList.head) /
+
 console.log(linkedList.addToTail('B'));
 console.log(linkedList.addToTail('C'));
+console.log(linkedList.peekAtHead()); // 'B'
+console.log(linkedList.addToHead('A'));
+console.log(linkedList.peekAtHead()); // 'A'
 
-linkedList.removeFromTail();
-console.log(linkedList.head) // { value: 'A', next: { value: 'B', next: null } });
-linkedList.removeFromTail();
-console.log(linkedList.head) // { value: 'A', next: null });
-linkedList.removeFromTail();
-console.log(linkedList.head) // null;
+
 
 module.exports = {
   SinglyLinkedList,
