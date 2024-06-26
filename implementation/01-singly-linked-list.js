@@ -58,24 +58,36 @@ class SinglyLinkedList {
     // Write your hypothesis on the time complexity of this method here
   }
 
+  // FROM LECTURE --
+  // let current = this.head;
+  // let previous;
+  
+  // while(current.next) {
+  //   previous = current;
+  //   current = current.next;
+  // }
+
   removeFromTail() {
     let current = this.head;
     let previous;
-    let removedTail;
-    if(this.length === 0) return undefined;
+    // if(this.length === 0) return undefined; // edge case for empty list
+    if(!this.head) return undefined;           // either one works 
     // Remove node at tail
     // console.log(current.next);
     while(current.next) {
-       previous = current;
-       console.log(previous);
-       current = current.next;
-      }
-    previous.next = null;
-    removedTail = current;
-    console.log(removedTail);
-    // linkedList.tail = current;
-    this.length--;
-    return this;
+      previous = current;
+      // console.log(previous);
+      current = current.next;
+    }
+    if(!previous) this.head = null;   // edge case for having 1 node
+    else {
+        previous.next = null;
+        // console.log(removedTail);
+        // linkedList.tail = current; // only code this for doubly linked list
+    }
+        this.length--;
+        return current;
+ 
     // Write your hypothesis on the time complexity of this method here
   }
 
