@@ -10,6 +10,7 @@ class SinglyLinkedList {
   constructor() {
     this.head = null;
     this.length = 0;
+    // this.tail = null;
   }
 
   addToHead(val) {
@@ -58,8 +59,23 @@ class SinglyLinkedList {
   }
 
   removeFromTail() {
+    let current = this.head;
+    let previous;
+    let removedTail;
+    if(this.length === 0) return undefined;
     // Remove node at tail
-    // Your code here
+    // console.log(current.next);
+    while(current.next) {
+       previous = current;
+       console.log(previous);
+       current = current.next;
+      }
+    previous.next = null;
+    removedTail = current;
+    console.log(removedTail);
+    // linkedList.tail = current;
+    this.length--;
+    return this;
     // Write your hypothesis on the time complexity of this method here
   }
 
@@ -75,8 +91,21 @@ class SinglyLinkedList {
     // Write your hypothesis on the time complexity of this method here
   }
 }
-// linkedList = new SinglyLinkedList();
-// console.log(linkedList.addToHead("A"));
+
+// local testing
+
+let linkedList = new SinglyLinkedList();
+
+console.log(linkedList.addToHead('A'));
+console.log(linkedList.addToTail('B'));
+console.log(linkedList.addToTail('C'));
+
+linkedList.removeFromTail();
+console.log(linkedList.head) // { value: 'A', next: { value: 'B', next: null } });
+linkedList.removeFromTail();
+console.log(linkedList.head) // { value: 'A', next: null });
+linkedList.removeFromTail();
+console.log(linkedList.head) // null;
 
 module.exports = {
   SinglyLinkedList,
