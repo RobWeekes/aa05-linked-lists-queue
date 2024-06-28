@@ -17,13 +17,14 @@ class SinglyLinkedList {
     // Add node of val to head of linked list
 
     const newNode = new SinglyLinkedNode(val);
-    //if there was a head before adding new head, bump
-    //the old head to the right
-    newNode.next = this.head;
-    this.head = newNode;
-    this.length++;
+    // if there was a head before adding new head, bump the old head to the right
+    // newNode.next = null if new node is the first node 
+    newNode.next = this.head;  // newNode.next = old head if one existed
+    this.head = newNode;  // point to the new head in linked list .head attribute
+    this.length++;              
     return this;
     // Write your hypothesis on the time complexity of this method here
+    // Time complexity = O(1), no traversing or looping is needed for these pointing operations
   }
 
   addToTail(val) {
@@ -32,43 +33,36 @@ class SinglyLinkedList {
     // Add node of val to tail of linked list
     let newNode = new SinglyLinkedNode(val);
 
-    if (!this.head) {
+    if (!this.head) {  // if there is no head, new node becomes head
       this.head = newNode;
-    } else {
+    } else {   // if there is a head, traverse the nodes to the tail
       let curr = this.head;
-      while (curr.next) {
+      while (curr.next) {   // while there is a next node, hop to the next
         curr = curr.next;
-      }
-      curr.next = newNode;
+      }                     // while loop stops at the current (old) tail node
+      curr.next = newNode;  // old tail node.next was null, now point it to new tail node
     }
     this.length++;
     return this;
 
     // Write your hypothesis on the time complexity of this method here
+    // Time complexity is O(n) (worst case) because of linked list traversal
   }
 
   removeFromHead() {
     // Remove node at head
     if (!this.head) return undefined;
     let removedHead = this.head;
-    this.head = this.head.next;
+    this.head = this.head.next;   // point linked list head attribute to the next node
     this.length--;
     return removedHead;
 
     // Write your hypothesis on the time complexity of this method here
+    // Time Complexity is O(1), no traversal or looping needed
   }
 
-  // FROM LECTURE --
-  // let current = this.head;
-  // let previous;
-  
-  // while(current.next) {
-  //   previous = current;
-  //   current = current.next;
-  // }
-
   removeFromTail() {
-    let current = this.head;
+    let current = this.head;    // always start at head node
     let previous;
     // if(this.length === 0) return undefined; // edge case for empty list
     if(!this.head) return undefined;           // either one works 
@@ -77,11 +71,11 @@ class SinglyLinkedList {
     while(current.next) {
       previous = current;
       // console.log(previous);
-      current = current.next;
+      current = current.next;   // traverse the linked list to the tail
     }
-    if(!previous) this.head = null;   // edge case for having 1 node
+    if(!previous) this.head = null;   // edge case for having 1 node, eliminate the head then
     else {
-        previous.next = null;
+        previous.next = null;  // removing pointer from 2nd to last node cuts off tail node
         // console.log(removedTail);
         // linkedList.tail = current; // only code this for doubly linked list
     }
@@ -90,14 +84,15 @@ class SinglyLinkedList {
     return current;
  
     // Write your hypothesis on the time complexity of this method here
-  }
+  } // Time complexity (worst case) is O(n) because of linked list traversal
 
   peekAtHead() {
-    if(!this.head) return undefined;
+    if(!this.head) return undefined;    // empty list
     // Return the value of head node
     return this.head.value;
 
     // Write your hypothesis on the time complexity of this method here
+    // Time complexity is constant O(1) because it's evaluating 1 node
   }
 
   print() {
@@ -108,14 +103,13 @@ class SinglyLinkedList {
         console.log(current.value);
         current = current.next;
     }
-
     // Write your hypothesis on the time complexity of this method here
-  }
+  } // Time complexity is linear O(n) because it traverses whole list
 }
 
 // local testing
 
-let linkedList = new SinglyLinkedList();
+// let linkedList = new SinglyLinkedList();
 
 // console.log(linkedList.addToHead('A'));
 // console.log(linkedList.addToTail('B'));
@@ -134,11 +128,11 @@ let linkedList = new SinglyLinkedList();
 // console.log(linkedList.addToHead('A'));
 // console.log(linkedList.peekAtHead()); // 'A'
 
-linkedList.addToTail('B');
-linkedList.addToTail('C');
-linkedList.addToTail('D');
-linkedList.addToHead('A');
-linkedList.print();
+// linkedList.addToTail('B');
+// linkedList.addToTail('C');
+// linkedList.addToTail('D');
+// linkedList.addToHead('A');
+// linkedList.print();
 
 
 
