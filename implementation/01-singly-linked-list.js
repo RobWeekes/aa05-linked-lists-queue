@@ -102,11 +102,13 @@ class SinglyLinkedList {
 
   print() {
     // Print out the linked list
-    let current;
-    while(this.head) {
-        console.log(current);
+    let current = this.head;
+    while(current) {
+        // process.stdout.write(`${current.value} -> `);
+        console.log(current.value);
         current = current.next;
     }
+
     // Write your hypothesis on the time complexity of this method here
   }
 }
@@ -126,11 +128,17 @@ let linkedList = new SinglyLinkedList();
 // linkedList.removeFromTail();
 // console.log(linkedList.head) /
 
-console.log(linkedList.addToTail('B'));
-console.log(linkedList.addToTail('C'));
-console.log(linkedList.peekAtHead()); // 'B'
-console.log(linkedList.addToHead('A'));
-console.log(linkedList.peekAtHead()); // 'A'
+// console.log(linkedList.addToTail('B'));
+// console.log(linkedList.addToTail('C'));
+// console.log(linkedList.peekAtHead()); // 'B'
+// console.log(linkedList.addToHead('A'));
+// console.log(linkedList.peekAtHead()); // 'A'
+
+linkedList.addToTail('B');
+linkedList.addToTail('C');
+linkedList.addToTail('D');
+linkedList.addToHead('A');
+linkedList.print();
 
 
 
